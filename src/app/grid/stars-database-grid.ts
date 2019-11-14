@@ -1,8 +1,11 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
-import { StarsDatabase } from '../../firebase/database/firebase-database';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
+
 import { Subscription } from 'rxjs';
 import { GuiSorting } from '@generic-ui/ngx-grid';
-import { map } from 'rxjs/operators';
+import { StarsDatabase } from '../database/stars-database.firebase';
+import { Star } from '../database/star';
+import { StarsDatabaseService } from '../database/stars-database.service';
+import { delay } from 'rxjs/operators';
 
 @Component({
 	selector: 'stars-database-grid',
@@ -29,7 +32,7 @@ export class StarsDatabaseGrid implements OnInit, OnDestroy {
 		}
 	];
 
-	source: Array<any>;
+	source: Array<Star>;
 
 	sorting: GuiSorting = {
 		enabled: true
@@ -37,17 +40,26 @@ export class StarsDatabaseGrid implements OnInit, OnDestroy {
 
 	private starsSubscription: Subscription;
 
-	constructor(private starsDatabase: StarsDatabase) {
+	constructor(private starsDatabase: StarsDatabase,
+				private dbS: StarsDatabaseService,
+				private changeDetectorRef: ChangeDetectorRef) {
 	}
 
 	ngOnInit(): void {
 		this.starsSubscription = this.starsDatabase.observeStarsData()
 									 .subscribe((stars) => {
 										 this.source = stars;
+										 // console.log(stars)
 									 });
 	}
 
 	ngOnDestroy() {
 		this.starsSubscription.unsubscribe();
+	}
+
+	AddStar() {
+		let x = new Star('x', 1, 2, 3, 4),
+			y = new Star('z', 1, 2, 3, 4);
+		this.dbS.addStar(y);
 	}
 }

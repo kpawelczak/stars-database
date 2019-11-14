@@ -5,9 +5,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AngularFireModule } from '@angular/fire';
 import { environment } from '../environments/environment';
-import { HomeModule } from './home/home.module';
+import { StarsHomeModule } from './home/stars-home.module';
 import { AngularFireDatabaseModule } from '@angular/fire/database';
-import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -16,8 +15,7 @@ import { FormsModule } from '@angular/forms';
 	],
 	imports: [
 		BrowserModule,
-		FormsModule,
-		HomeModule,
+		StarsHomeModule,
 		AppRoutingModule,
 		AngularFireModule.initializeApp(environment.firebase, 'stars-database-gui'),
 		AngularFireDatabaseModule
