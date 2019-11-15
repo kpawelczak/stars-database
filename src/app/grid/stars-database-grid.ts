@@ -1,11 +1,10 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 
 import { Subscription } from 'rxjs';
 import { GuiSorting } from '@generic-ui/ngx-grid';
 import { StarsDatabase } from '../database/stars-database.firebase';
 import { Star } from '../database/star';
 import { StarsDatabaseService } from '../database/stars-database.service';
-import { delay } from 'rxjs/operators';
 
 @Component({
 	selector: 'stars-database-grid',
@@ -16,19 +15,19 @@ export class StarsDatabaseGrid implements OnInit, OnDestroy {
 	columns = [
 		{
 			header: 'Name',
-			field: (stars) => stars.name
+			field: (stars: Star) => Object.values(stars)[1].name
 		}, {
 			header: 'Distance',
-			field: (stars) => stars.distance
+			field: (stars: Star) => Object.values(stars)[1].distance
 		}, {
 			header: 'Cord X',
-			field: (stars) => stars.x
+			field: (stars: Star) => Object.values(stars)[1].x
 		}, {
 			header: 'Cord Y',
-			field: (stars) => stars.y
+			field: (stars: Star) => Object.values(stars)[1].y
 		}, {
 			header: 'Cord Z',
-			field: (stars) => stars.z
+			field: (stars: Star) => Object.values(stars)[1].z
 		}
 	];
 
@@ -41,15 +40,14 @@ export class StarsDatabaseGrid implements OnInit, OnDestroy {
 	private starsSubscription: Subscription;
 
 	constructor(private starsDatabase: StarsDatabase,
-				private dbS: StarsDatabaseService,
-				private changeDetectorRef: ChangeDetectorRef) {
+				private dbS: StarsDatabaseService) {
 	}
 
 	ngOnInit(): void {
 		this.starsSubscription = this.starsDatabase.observeStarsData()
 									 .subscribe((stars) => {
 										 this.source = stars;
-										 // console.log(stars)
+										 console.log(stars);
 									 });
 	}
 
@@ -58,8 +56,7 @@ export class StarsDatabaseGrid implements OnInit, OnDestroy {
 	}
 
 	AddStar() {
-		let x = new Star('x', 1, 2, 3, 4),
-			y = new Star('z', 1, 2, 3, 4);
+		let y = new Star(123123, 'z', 1, 2, 3, 4).createStar();
 		this.dbS.addStar(y);
 	}
 }
