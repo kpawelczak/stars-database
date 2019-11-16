@@ -7,7 +7,6 @@ import { Stars } from './stars';
 @Injectable()
 export class StarsDatabaseService {
 
-	// private localStars = localStorage.setItem('localStars', '1');
 	private readonly localStarsDataKey = 'starsData';
 	private readonly localChangesId = 'storedID';
 
@@ -16,10 +15,15 @@ export class StarsDatabaseService {
 	}
 
 	addStar(star: any): void {
-		let storedStars = JSON.parse(localStorage.getItem(this.localStarsDataKey)),
+		const newRef = this.fireDatabase.list('stars').push(star),
+			newStarKey = newRef.key,
+			newStar = new Star(newStarKey, star.name, star.distance, star.x, star.y, star.z).createStar();
+
+		const storedStars = JSON.parse(localStorage.getItem(this.localStarsDataKey)),
 			newStars = new Stars(storedStars).createStars();
-		newStars.push(star);
-		// this.fireDatabase.list('stars').push(star);
+
+		newStars.push(newStar);
+
 		this.starsDatabase.changeDatabase(newStars);
 		this.generateChangesId();
 	}
@@ -29,7 +33,7 @@ export class StarsDatabaseService {
 	}
 
 	generateChangesId() {
-		const changesId = Math.round(Math.random() * 1000000000);
+		const changesId = Math.round(Math.random() * 1000000);
 		localStorage.setItem(this.localChangesId, `${changesId}`);
 		this.fireDatabase.list('stars changes').update('changes', { changesId: changesId });
 	}

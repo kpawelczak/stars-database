@@ -39,15 +39,14 @@ export class StarsDatabaseGrid implements OnInit, OnDestroy {
 
 	private starsSubscription: Subscription;
 
-	constructor(private starsDatabase: StarsDatabase,
-				private dbS: StarsDatabaseService) {
+	constructor(private starsDatabase: StarsDatabase) {
 	}
 
 	ngOnInit(): void {
 		this.starsSubscription = this.starsDatabase.observeStarsData()
 									 .subscribe((stars) => {
 										 this.source = stars;
-										 console.log(stars);
+										 // console.log(stars);
 									 });
 	}
 
@@ -55,8 +54,4 @@ export class StarsDatabaseGrid implements OnInit, OnDestroy {
 		this.starsSubscription.unsubscribe();
 	}
 
-	AddStar() {
-		let y = new Star(123123, 'z', 1, 2, 3, 4).createStar();
-		this.dbS.addStar(y);
-	}
 }

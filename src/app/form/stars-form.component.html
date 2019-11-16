@@ -1,4 +1,4 @@
-<form [formGroup]="starsForms">
+<form [formGroup]="starsForms" (ngSubmit)="addStar()">
 	<label>
 		Name: <input formControlName="starName">
 	</label>
@@ -18,3 +18,4 @@
 		<input formControlName="starZ">
 	</label>
 </form>
+<button (click)="addStar()">add</button>
