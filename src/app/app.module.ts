@@ -7,6 +7,7 @@ import { AngularFireModule } from '@angular/fire';
 import { environment } from '../environments/environment';
 import { StarsHomeModule } from './home/stars-home.module';
 import { AngularFireDatabaseModule } from '@angular/fire/database';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
 @NgModule({
@@ -15,6 +16,7 @@ import { AngularFireDatabaseModule } from '@angular/fire/database';
 	],
 	imports: [
 		BrowserModule,
+		BrowserAnimationsModule,
 		StarsHomeModule,
 		AppRoutingModule,
 		AngularFireModule.initializeApp(environment.firebase, 'stars-database-gui'),

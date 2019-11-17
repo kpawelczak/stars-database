@@ -1,9 +1,18 @@
-form {
-	display: flex;
-	flex-direction: column;
-	width: 200px;
+.stars-form {
+	padding: 32px;
 
-	input {
+	form {
+		display: flex;
+		flex-direction: column;
 		margin-bottom: 8px;
+		width: 200px;
+
+		input {
+			margin-bottom: 8px;
+		}
+	}
+
+	button {
+		margin-right: 12px;
 	}
 }

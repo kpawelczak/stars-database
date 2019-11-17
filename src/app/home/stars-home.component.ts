@@ -1,18 +1,23 @@
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { Component } from '@angular/core';
+import { FabricDialogService } from '../util/dialog/fabric-dialog.service';
+import { StarsFormComponent } from '../form/stars-form.component';
 
 @Component({
 	selector: 'stars-home',
 	templateUrl: './stars-home.component.html',
 	styleUrls: ['./stars-home.component.scss']
 })
-export class StarsHomeComponent implements OnInit {
+export class StarsHomeComponent {
 
+	constructor(private dialogService: FabricDialogService) {
 
-	ngOnInit() {
 	}
 
 	clearStorage() {
 		localStorage.clear();
+	}
+
+	openAddStarForm() {
+		this.dialogService.open(StarsFormComponent);
 	}
 }

@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { StarsDatabaseService } from '../database/stars-database.service';
+import { FabricDialogService } from '../util/dialog/fabric-dialog.service';
 
 @Component({
 	selector: 'stars-form',
@@ -11,13 +12,14 @@ export class StarsFormComponent {
 	starsForms: FormGroup;
 
 	constructor(private formBuilder: FormBuilder,
-				private starsDatabaseService: StarsDatabaseService) {
+				private starsDatabaseService: StarsDatabaseService,
+				private dialogService: FabricDialogService) {
 		this.starsForms = this.formBuilder.group({
-			'starName': ['test'],
-			'starDistance': ['1'],
-			'starX': ['2'],
-			'starY': ['3'],
-			'starZ': ['4']
+			'starName': ['', Validators.required],
+			'starDistance': ['', Validators.required],
+			'starX': ['', Validators.required],
+			'starY': ['', Validators.required],
+			'starZ': ['', Validators.required]
 		});
 	}
 
@@ -31,5 +33,6 @@ export class StarsFormComponent {
 		};
 
 		this.starsDatabaseService.addStar(star);
+		this.dialogService.close();
 	}
 }

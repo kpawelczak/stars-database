@@ -1,22 +1,27 @@
-<form [formGroup]="starsEditForms">
-	<label>
-		Name: <input formControlName="starEditName">
-	</label>
-	<label>
-		Distance: <input formControlName="starEditDistance">
-	</label>
-	<label>
-		Cord X:
-		<input formControlName="starEditX">
-	</label>
-	<label>
-		Cord Y:
-		<input formControlName="starEditY">
-	</label>
-	<label>
-		Cord Z
-		<input formControlName="starEditZ">
-	</label>
-</form>
-<button (click)="editStar()">Edit</button>
-<button (click)="removeStar()">Remove</button>
+<div class="stars-edit-form">
+	<form [formGroup]="starsEditForms">
+
+		<mat-form-field>
+			<input matInput formControlName="starEditName" placeholder="Name">
+		</mat-form-field>
+
+		<mat-form-field>
+			<input matInput formControlName="starEditDistance" placeholder="Distance">
+		</mat-form-field>
+
+		<mat-form-field>
+			<input matInput formControlName="starEditX" placeholder="Cord X">
+		</mat-form-field>
+
+		<mat-form-field>
+			<input matInput formControlName="starEditY" placeholder="Cord Y">
+		</mat-form-field>
+
+		<mat-form-field>
+			<input matInput formControlName="starEditZ" placeholder="Cord Z">
+		</mat-form-field>
+
+	</form>
+	<button mat-raised-button color="primary" (click)="editStar()">Edit</button>
+	<button mat-raised-button color="warn" (click)="removeStar()">Remove</button>
+</div>

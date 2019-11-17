@@ -1,12 +1,12 @@
 import { NgModule } from '@angular/core';
 import { GridModule } from '@generic-ui/ngx-grid';
-import { StarsDatabaseGridComponent } from './stars-database-grid.component';
 import { CommonModule } from '@angular/common';
-
-import { FabricDialogModule } from '../util/dialog/fabric-dialog.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
+import { StarsDatabaseGridComponent } from './stars-database-grid.component';
 import { StarsCellEditComponent } from './stars-cell-edit/stars-cell-edit.component';
 import { SelectedStarService } from './selected-star.service';
+import { MatButtonModule, MatFormFieldModule, MatInputModule } from '@angular/material';
 
 
 @NgModule({
@@ -15,7 +15,9 @@ import { SelectedStarService } from './selected-star.service';
 		GridModule,
 		FormsModule,
 		ReactiveFormsModule,
-		FabricDialogModule
+		MatFormFieldModule,
+		MatButtonModule,
+		MatInputModule
 	],
 	declarations: [
 		StarsDatabaseGridComponent,
@@ -27,7 +29,9 @@ import { SelectedStarService } from './selected-star.service';
 	entryComponents: [
 		StarsCellEditComponent
 	],
-	providers: [SelectedStarService]
+	providers: [
+		SelectedStarService
+	]
 })
 export class StarsDatabaseGridModule {
 
