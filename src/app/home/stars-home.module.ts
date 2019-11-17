@@ -1,23 +1,24 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { GridModule } from '@generic-ui/ngx-grid';
 
 import { StarsHomeComponent } from './stars-home.component';
-import { StarsDatabaseGrid } from '../grid/stars-database-grid';
-import { StarsFormModule } from '../form/stars-form.module';
 import { StarsDatabase } from '../database/stars-database.firebase';
 import { StarsDatabaseService } from '../database/stars-database.service';
+import { StarsDatabaseGridModule } from '../grid/stars-database-grid.module';
+import { StarsFormComponent } from '../form/stars-form.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
 	imports: [
 		CommonModule,
-		GridModule,
-		StarsFormModule
+		FormsModule,
+		ReactiveFormsModule,
+		StarsDatabaseGridModule,
 	],
 	declarations: [
 		StarsHomeComponent,
-		StarsDatabaseGrid
+		StarsFormComponent
 	],
 	exports: [
 		StarsHomeComponent

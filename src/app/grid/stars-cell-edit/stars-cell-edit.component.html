@@ -1,0 +1,22 @@
+<form [formGroup]="starsEditForms">
+	<label>
+		Name: <input formControlName="starEditName">
+	</label>
+	<label>
+		Distance: <input formControlName="starEditDistance">
+	</label>
+	<label>
+		Cord X:
+		<input formControlName="starEditX">
+	</label>
+	<label>
+		Cord Y:
+		<input formControlName="starEditY">
+	</label>
+	<label>
+		Cord Z
+		<input formControlName="starEditZ">
+	</label>
+</form>
+<button (click)="editStar()">Edit</button>
+<button (click)="removeStar()">Remove</button>

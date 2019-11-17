@@ -28,11 +28,43 @@ export class StarsDatabaseService {
 		this.generateChangesId();
 	}
 
-	removeStar(): void {
+	editStar(star: any): void {
+		this.fireDatabase.list('stars').update(star.key, {
+			name: star.name,
+			distance: star.distance,
+			x: star.x,
+			y: star.y,
+			z: star.z
+		});
 
+		const storedStars = JSON.parse(localStorage.getItem(this.localStarsDataKey)),
+			selectedStar = storedStars.filter((s) => Object.values(s)[0] === Object.values(star)[0])[0],
+			selectedStarIndex = storedStars.indexOf(selectedStar);
+
+		storedStars[selectedStarIndex] = new Star(star.key, star.name, star.distance, star.x, star.y, star.z).createStar();
+
+		const changedStars = new Stars(storedStars).createStars();
+
+		this.starsDatabase.changeDatabase(changedStars);
+		this.generateChangesId();
 	}
 
-	generateChangesId() {
+	removeStar(starKey: any): void {
+		this.fireDatabase.list('stars').remove(starKey);
+
+		const storedStars = JSON.parse(localStorage.getItem(this.localStarsDataKey)),
+			selectedStar = storedStars.filter((s) => Object.values(s)[0] === starKey)[0],
+			selectedStarIndex = storedStars.indexOf(selectedStar);
+
+		storedStars.splice(selectedStarIndex, 1);
+
+		const changedStars = new Stars(storedStars).createStars();
+
+		this.starsDatabase.changeDatabase(changedStars);
+		this.generateChangesId();
+	}
+
+	private generateChangesId(): void {
 		const changesId = Math.round(Math.random() * 1000000);
 		localStorage.setItem(this.localChangesId, `${changesId}`);
 		this.fireDatabase.list('stars changes').update('changes', { changesId: changesId });
