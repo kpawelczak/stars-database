@@ -26,7 +26,7 @@ export class StarsDatabase implements OnDestroy {
 		this.unsubscribe(this.firebaseDataSubscription);
 	}
 
-	private observeFirebaseChanges() {
+	private observeFirebaseChanges(): void {
 		this.firebaseChangesSubscription =
 			this.database.list('stars changes').valueChanges()
 				.subscribe(
@@ -37,7 +37,7 @@ export class StarsDatabase implements OnDestroy {
 				);
 	}
 
-	private loadData() {
+	private loadData(): void {
 		const storedStars = JSON.parse(localStorage.getItem(this.localStarsDataKey));
 
 		if (!storedStars) {
@@ -90,18 +90,18 @@ export class StarsDatabase implements OnDestroy {
 		return new Stars(stars).createStars();
 	}
 
-	private unsubscribe(sub: Subscription) {
+	private unsubscribe(sub: Subscription): void {
 		if (sub) {
 			sub.unsubscribe();
 		}
 	}
 
-	private changesLoaded() {
+	private changesLoaded(): void {
 		console.log('changes loaded from firebase');
 		localStorage.setItem(this.localChangesId, this.firebaseChanges.toString());
 	}
 
-	private refreshOnce() {
+	private refreshOnce(): void {
 		if (window.localStorage) {
 			if (!localStorage.getItem('firstLoad')) {
 				window.location.reload();
