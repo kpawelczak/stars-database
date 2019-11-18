@@ -1,27 +1,27 @@
 <div class="stars-edit-form">
 	<form [formGroup]="starsEditForms">
-
+		<h3>Star: {{getStarName()}}</h3>
 		<mat-form-field>
 			<input matInput formControlName="starEditName" placeholder="Name">
 		</mat-form-field>
 
 		<mat-form-field>
-			<input matInput formControlName="starEditDistance" placeholder="Distance">
+			<input matInput formControlName="starEditDistance" placeholder="Distance" type="number">
 		</mat-form-field>
 
 		<mat-form-field>
-			<input matInput formControlName="starEditX" placeholder="Cord X">
+			<input matInput formControlName="starEditX" placeholder="Cord X" type="number">
 		</mat-form-field>
 
 		<mat-form-field>
-			<input matInput formControlName="starEditY" placeholder="Cord Y">
+			<input matInput formControlName="starEditY" placeholder="Cord Y" type="number">
 		</mat-form-field>
 
 		<mat-form-field>
-			<input matInput formControlName="starEditZ" placeholder="Cord Z">
+			<input matInput formControlName="starEditZ" placeholder="Cord Z" type="number">
 		</mat-form-field>
 
 	</form>
-	<button mat-raised-button color="primary" (click)="editStar()">Edit</button>
+	<button mat-raised-button color="primary" (click)="editStar()" [disabled]="!starsEditForms.valid">Edit</button>
 	<button mat-raised-button color="warn" (click)="removeStar()">Remove</button>
 </div>

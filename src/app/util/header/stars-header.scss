@@ -1,0 +1,28 @@
+$white: #FFFFFF;
+$blue: #0d47a1;
+
+.stars-header {
+	display: flex;
+	justify-content: space-between;
+	background: $blue;
+	color: $white;
+	padding: 16px;
+	font-family: Roboto, "Helvetica Neue", sans-serif;
+
+	h3 {
+		margin: 0;
+	}
+
+	#link {
+		transition: color 0.2s;
+		align-self: center;
+		text-decoration: none;
+		color: $white;
+		padding: 2px;
+
+		&:hover {
+			color: darken($white, 40);
+			text-decoration: none;
+		}
+	}
+}

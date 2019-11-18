@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { StarsDatabaseService } from '../../database/stars-database.service';
 import { SelectedStarService } from '../selected-star.service';
 import { Subscription } from 'rxjs';
@@ -22,11 +22,11 @@ export class StarsCellEditComponent implements OnInit, OnDestroy {
 				private selectedStarService: SelectedStarService,
 				private dialogService: FabricDialogService) {
 		this.starsEditForms = this.formBuilder.group({
-			'starEditName': [],
-			'starEditDistance': [],
-			'starEditX': [],
-			'starEditY': [],
-			'starEditZ': []
+			'starEditName': ['', Validators.required],
+			'starEditDistance': ['', Validators.required],
+			'starEditX': ['', Validators.required],
+			'starEditY': ['', Validators.required],
+			'starEditZ': ['', Validators.required]
 		});
 	}
 
@@ -43,6 +43,10 @@ export class StarsCellEditComponent implements OnInit, OnDestroy {
 						this.starsEditForms.controls['starEditZ'].setValue(Object.values(selectedStar)[1].z);
 					}
 				);
+	}
+
+	getStarName() {
+		return this.starsEditForms.controls['starEditName'].value;
 	}
 
 	ngOnDestroy() {

@@ -66,10 +66,6 @@ export class StarsDatabase implements OnDestroy {
 		this.stars$.next(newStars);
 	}
 
-	private createStars(stars: Array<any>): Array<Star> {
-		return new Stars(stars).createStars();
-	}
-
 	private loadDataFromFirebase(): void {
 		this.firebaseDataSubscription =
 			this.database.list('stars').snapshotChanges()
@@ -86,7 +82,12 @@ export class StarsDatabase implements OnDestroy {
 					this.changesLoaded();
 					this.stars$.next(stars);
 					console.log('loaded from firebase');
+					this.refreshOnce();
 				});
+	}
+
+	private createStars(stars: Array<any>): Array<Star> {
+		return new Stars(stars).createStars();
 	}
 
 	private unsubscribe(sub: Subscription) {
@@ -98,6 +99,16 @@ export class StarsDatabase implements OnDestroy {
 	private changesLoaded() {
 		console.log('changes loaded from firebase');
 		localStorage.setItem(this.localChangesId, this.firebaseChanges.toString());
+	}
+
+	private refreshOnce() {
+		if (window.localStorage) {
+			if (!localStorage.getItem('firstLoad')) {
+				window.location.reload();
+			} else {
+				localStorage.removeItem('firstLoad');
+			}
+		}
 	}
 
 }

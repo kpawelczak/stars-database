@@ -30,7 +30,7 @@ import { MatButtonModule, MatFormFieldModule, MatInputModule } from '@angular/ma
 	exports: [
 		StarsHomeComponent
 	],
-	entryComponents:[
+	entryComponents: [
 		StarsFormComponent
 	],
 	providers: [

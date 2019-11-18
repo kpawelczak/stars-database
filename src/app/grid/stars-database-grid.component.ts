@@ -1,12 +1,10 @@
-import { Component, OnDestroy, OnInit, Output } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 
 import { Subscription } from 'rxjs';
 import { GuiSorting } from '@generic-ui/ngx-grid';
 import { StarsDatabase } from '../database/stars-database.firebase';
 import { Star } from '../database/star';
 import { FabricDialogService } from '../util/dialog/fabric-dialog.service';
-// import { StarsDatabaseCellEdit } from './cell-edit/stars-database-cell-edit';
-import { StarsFormComponent } from '../form/stars-form.component';
 import { StarsCellEditComponent } from './stars-cell-edit/stars-cell-edit.component';
 import { SelectedStarService } from './selected-star.service';
 
@@ -16,9 +14,16 @@ import { SelectedStarService } from './selected-star.service';
 	templateUrl: 'stars-database-grid.component.html'
 })
 export class StarsDatabaseGridComponent implements OnInit, OnDestroy {
-	@Output()
+	loading: boolean = true;
 
 	columns = [
+		{
+			header: '#',
+			field: (stars) => {
+				return this.source.indexOf(stars) + 1;
+			},
+			width: 50
+		},
 		{
 			header: 'Name',
 			field: (stars: Array<any>) => Object.values(stars)[1].name
@@ -54,6 +59,7 @@ export class StarsDatabaseGridComponent implements OnInit, OnDestroy {
 		this.starsSubscription = this.starsDatabase.observeStarsData()
 									 .subscribe((stars) => {
 										 this.source = stars;
+										 this.loading = false;
 										 // console.log(stars);
 									 });
 	}
@@ -63,6 +69,10 @@ export class StarsDatabaseGridComponent implements OnInit, OnDestroy {
 	}
 
 	onStarSelection(selectedStar) {
+		if (!selectedStar[0]) {
+			return;
+		}
+
 		this.dialogService.open(StarsCellEditComponent);
 		this.selectedStarService.starSelected(selectedStar[0]);
 	}

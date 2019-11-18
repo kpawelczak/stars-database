@@ -45,3 +45,7 @@ Thumbs.db
 src/environments/firebase-config.ts
 src/app/backup/stars-database.ts
 src/app/backup/backup.ts
+.firebase
+.firebaserc
+database.rules.json
+firebase.json

@@ -8,12 +8,10 @@ import { environment } from '../environments/environment';
 import { StarsHomeModule } from './home/stars-home.module';
 import { AngularFireDatabaseModule } from '@angular/fire/database';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { StarsHeaderComponent } from './util/header/header.componet';
 
 
 @NgModule({
-	declarations: [
-		AppComponent
-	],
 	imports: [
 		BrowserModule,
 		BrowserAnimationsModule,
@@ -21,6 +19,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 		AppRoutingModule,
 		AngularFireModule.initializeApp(environment.firebase, 'stars-database-gui'),
 		AngularFireDatabaseModule
+	],
+	declarations: [
+		AppComponent,
+		StarsHeaderComponent
 	],
 	providers: [],
 	bootstrap: [AppComponent]

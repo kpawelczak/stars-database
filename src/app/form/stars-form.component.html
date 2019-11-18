@@ -1,25 +1,26 @@
 <div class="stars-form">
 	<form [formGroup]="starsForms" (ngSubmit)="addStar()">
+
 		<mat-form-field>
 			<input matInput formControlName="starName" placeholder="Name">
 		</mat-form-field>
 
 		<mat-form-field>
-			<input matInput formControlName="starDistance" placeholder="Distance">
+			<input matInput formControlName="starDistance" placeholder="Distance" type="number">
 		</mat-form-field>
 
 		<mat-form-field>
-			<input matInput formControlName="starX" placeholder="Cord X">
+			<input matInput formControlName="starX" placeholder="Cord X" type="number">
 		</mat-form-field>
 
 		<mat-form-field>
-			<input matInput formControlName="starY" placeholder="Cord Y">
+			<input matInput formControlName="starY" placeholder="Cord Y" type="number">
 		</mat-form-field>
 
 		<mat-form-field>
-			<input matInput formControlName="starZ" placeholder="Cord Z">
+			<input matInput formControlName="starZ" placeholder="Cord Z" type="number">
 		</mat-form-field>
 
 	</form>
-	<button mat-raised-button color="primary" (click)="addStar()">add</button>
+	<button mat-raised-button color="primary" (click)="addStar()" [disabled]="!starsForms.valid">add</button>
 </div>
