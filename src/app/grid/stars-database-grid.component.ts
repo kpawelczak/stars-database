@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 
 import { Subscription } from 'rxjs';
-import { GuiSorting } from '@generic-ui/ngx-grid';
+import { GuiCellView, GuiDataType, GuiSorting } from '@generic-ui/ngx-grid';
 import { StarsDatabase } from '../database/stars-database.firebase';
 import { Star } from '../database/star';
 import { FabricDialogService } from '../util/dialog/fabric-dialog.service';
@@ -22,23 +22,29 @@ export class StarsDatabaseGridComponent implements OnInit, OnDestroy {
 			field: (stars) => {
 				return this.source.indexOf(stars) + 1;
 			},
+			type: GuiDataType.NUMBER,
 			width: 50
 		},
 		{
 			header: 'Name',
-			field: (stars: Array<any>) => Object.values(stars)[1].name
+			field: (stars: Array<any>) => Object.values(stars)[1].name,
+			type: GuiDataType.STRING
 		}, {
-			header: 'Distance',
-			field: (stars: Star) => Object.values(stars)[1].distance
+			header: 'Distance [ly]',
+			field: (stars: Star) => Object.values(stars)[1].distance,
+			type: GuiDataType.NUMBER
 		}, {
-			header: 'Cord X',
-			field: (stars: Star) => Object.values(stars)[1].x
+			header: 'Cord X [ly]',
+			field: (stars: Star) => Object.values(stars)[1].x,
+			type: GuiDataType.NUMBER
 		}, {
-			header: 'Cord Y',
-			field: (stars: Star) => Object.values(stars)[1].y
+			header: 'Cord Y [ly]',
+			field: (stars: Star) => Object.values(stars)[1].y,
+			type: GuiDataType.NUMBER
 		}, {
-			header: 'Cord Z',
-			field: (stars: Star) => Object.values(stars)[1].z
+			header: 'Cord Z [ly]',
+			field: (stars: Star) => Object.values(stars)[1].z,
+			type: GuiDataType.NUMBER
 		}
 	];
 

@@ -10,11 +10,6 @@ import { StarsFormComponent } from '../form/stars-form.component';
 export class StarsHomeComponent {
 
 	constructor(private dialogService: FabricDialogService) {
-
-	}
-
-	clearStorage() {
-		localStorage.clear();
 	}
 
 	openAddStarForm() {

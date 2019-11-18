@@ -1,9 +1,14 @@
 article {
-	margin: 24px;
-}
-section {
-	margin-bottom: 12px;
-}
-.mat-raised-button {
-	background: #0d47a1;
+	margin: 12px 24px;
+
+	section {
+		padding: 20px 0;
+		margin-bottom: 12px;
+		font-family: Roboto, "Helvetica Neue", sans-serif;
+	}
+
+	.mat-raised-button {
+		background: #0d47a1;
+	}
+
 }
