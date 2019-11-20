@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import { StarsDatabase } from './stars-database.firebase';
 import { Star } from './star';
-import { AngularFireDatabase } from '@angular/fire/database';
 import { Stars } from './stars';
+import { AngularFireDatabase } from '@angular/fire/database';
+
 
 @Injectable()
 export class StarsDatabaseService {
@@ -38,7 +39,7 @@ export class StarsDatabaseService {
 		});
 
 		const storedStars = JSON.parse(localStorage.getItem(this.localStarsDataKey)),
-			selectedStar = storedStars.filter((s) => Object.values(s)[0] === Object.values(star)[0])[0],
+			selectedStar = storedStars.filter((star_) => Object.values(star_)[0] === Object.values(star)[0])[0],
 			selectedStarIndex = storedStars.indexOf(selectedStar);
 
 		storedStars[selectedStarIndex] = new Star(star.key, star.name, star.distance, star.x, star.y, star.z).createStar();

@@ -21,7 +21,7 @@ export class StarsDatabase implements OnDestroy {
 		this.observeFirebaseChanges();
 	}
 
-	ngOnDestroy() {
+	ngOnDestroy(): void {
 		this.firebaseChangesSubscription.unsubscribe();
 		this.unsubscribe(this.firebaseDataSubscription);
 	}
@@ -76,8 +76,8 @@ export class StarsDatabase implements OnDestroy {
 						return { key, star };
 					});
 				}))
-				.subscribe((payload) => {
-					const stars = this.createStars(payload);
+				.subscribe((stars_) => {
+					const stars = this.createStars(stars_);
 					localStorage.setItem(this.localStarsDataKey, JSON.stringify(stars));
 					this.changesLoaded();
 					this.stars$.next(stars);

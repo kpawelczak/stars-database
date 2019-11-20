@@ -12,7 +12,7 @@ export class StarsHomeComponent {
 	constructor(private dialogService: FabricDialogService) {
 	}
 
-	openAddStarForm() {
+	openAddStarForm(): void {
 		this.dialogService.open(StarsFormComponent);
 	}
 }

@@ -1,9 +1,10 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 
 import { Subscription } from 'rxjs';
-import { GuiCellView, GuiDataType, GuiSorting } from '@generic-ui/ngx-grid';
+import { GuiDataType, GuiSorting } from '@generic-ui/ngx-grid';
 import { StarsDatabase } from '../database/stars-database.firebase';
 import { Star } from '../database/star';
+import { Stars } from '../database/stars';
 import { FabricDialogService } from '../util/dialog/fabric-dialog.service';
 import { StarsCellEditComponent } from './stars-cell-edit/stars-cell-edit.component';
 import { SelectedStarService } from './selected-star.service';
@@ -27,23 +28,23 @@ export class StarsDatabaseGridComponent implements OnInit, OnDestroy {
 		},
 		{
 			header: 'Name',
-			field: (stars: Array<any>) => Object.values(stars)[1].name,
+			field: (stars: Stars) => Object.values(stars)[1].name,
 			type: GuiDataType.STRING
 		}, {
 			header: 'Distance [ly]',
-			field: (stars: Star) => Object.values(stars)[1].distance,
+			field: (stars: Stars) => Object.values(stars)[1].distance,
 			type: GuiDataType.NUMBER
 		}, {
 			header: 'Cord X [ly]',
-			field: (stars: Star) => Object.values(stars)[1].x,
+			field: (stars: Stars) => Object.values(stars)[1].x,
 			type: GuiDataType.NUMBER
 		}, {
 			header: 'Cord Y [ly]',
-			field: (stars: Star) => Object.values(stars)[1].y,
+			field: (stars: Stars) => Object.values(stars)[1].y,
 			type: GuiDataType.NUMBER
 		}, {
 			header: 'Cord Z [ly]',
-			field: (stars: Star) => Object.values(stars)[1].z,
+			field: (stars: Stars) => Object.values(stars)[1].z,
 			type: GuiDataType.NUMBER
 		}
 	];
@@ -66,15 +67,14 @@ export class StarsDatabaseGridComponent implements OnInit, OnDestroy {
 									 .subscribe((stars) => {
 										 this.source = stars;
 										 this.loading = false;
-										 // console.log(stars);
 									 });
 	}
 
-	ngOnDestroy() {
+	ngOnDestroy(): void {
 		this.starsSubscription.unsubscribe();
 	}
 
-	onStarSelection(selectedStar) {
+	onStarSelection(selectedStar): void {
 		if (!selectedStar[0]) {
 			return;
 		}

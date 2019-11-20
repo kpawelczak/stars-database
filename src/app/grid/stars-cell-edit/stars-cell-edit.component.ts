@@ -30,7 +30,7 @@ export class StarsCellEditComponent implements OnInit, OnDestroy {
 		});
 	}
 
-	ngOnInit() {
+	ngOnInit(): void {
 		this.selectedStarSubscription =
 			this.selectedStarService.observeSelectedStar()
 				.subscribe(
@@ -45,12 +45,12 @@ export class StarsCellEditComponent implements OnInit, OnDestroy {
 				);
 	}
 
-	getStarName() {
-		return this.starsEditForms.controls['starEditName'].value;
+	ngOnDestroy(): void {
+		this.selectedStarSubscription.unsubscribe();
 	}
 
-	ngOnDestroy() {
-		this.selectedStarSubscription.unsubscribe();
+	getStarName(): void {
+		return this.starsEditForms.controls['starEditName'].value;
 	}
 
 	editStar(): void {
@@ -71,6 +71,5 @@ export class StarsCellEditComponent implements OnInit, OnDestroy {
 		this.starsDatabaseService.removeStar(this.selectedStarKey);
 		this.dialogService.close();
 	}
-
 
 }
