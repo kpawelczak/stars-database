@@ -7,7 +7,7 @@ import { StarsDatabaseService } from '../database/stars-database.service';
 import { StarsDatabaseGridModule } from '../grid/stars-database-grid.module';
 import { StarsFormComponent } from '../form/stars-form.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { FabricDialogModule } from '../util/dialog/fabric-dialog.module';
+import { FabricDialogModule } from '@generic-ui/fabric';
 import { MatButtonModule, MatFormFieldModule, MatInputModule } from '@angular/material';
 
 

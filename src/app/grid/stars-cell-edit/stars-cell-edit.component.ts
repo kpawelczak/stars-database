@@ -4,7 +4,7 @@ import { StarsDatabaseService } from '../../database/stars-database.service';
 import { SelectedStarService } from '../selected-star.service';
 import { Subscription } from 'rxjs';
 import { Star } from '../../database/star';
-import { FabricDialogService } from '../../util/dialog/fabric-dialog.service';
+import { FabricDialogService } from '@generic-ui/fabric';
 
 @Component({
 	selector: 'app-stars-cell-edit',

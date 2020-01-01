@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FabricDialogService } from '../util/dialog/fabric-dialog.service';
+import { FabricDialogService } from '@generic-ui/fabric';
 import { StarsFormComponent } from '../form/stars-form.component';
 
 @Component({

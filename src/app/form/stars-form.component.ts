@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { StarsDatabaseService } from '../database/stars-database.service';
-import { FabricDialogService } from '../util/dialog/fabric-dialog.service';
+import { FabricDialogService } from '@generic-ui/fabric';
 
 @Component({
 	selector: 'stars-form',

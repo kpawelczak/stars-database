@@ -5,7 +5,7 @@ import { GuiDataType, GuiSorting } from '@generic-ui/ngx-grid';
 import { StarsDatabase } from '../database/stars-database.firebase';
 import { Star } from '../database/star';
 import { Stars } from '../database/stars';
-import { FabricDialogService } from '../util/dialog/fabric-dialog.service';
+import { FabricDialogService } from '@generic-ui/fabric';
 import { StarsCellEditComponent } from './stars-cell-edit/stars-cell-edit.component';
 import { SelectedStarService } from './selected-star.service';
 
